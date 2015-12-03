@@ -22,8 +22,8 @@ concatOutput (x : xs) =
 
 handleFizzBuzz :: [String] -> [String]
 handleFizzBuzz [] = []
-handleFizzBuzz (x : xs) = 
-    concatOutput (fizzBuzz (convertInputLine x)) : handleFizzBuzz xs
+handleFizzBuzz (x : xs) =
+    (concatOutput . fizzBuzz . convertInputLine $ x) : handleFizzBuzz xs
 
 main :: IO ()
 main = do
