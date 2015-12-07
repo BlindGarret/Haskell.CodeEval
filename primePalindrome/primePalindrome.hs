@@ -7,16 +7,8 @@ isPalindrome x = reverse (show x) == (show x)
 isPrime :: Int -> Bool
 isPrime x
     | x `mod` 2 == 0 = False
-    | otherwise = (length (getFactors x)) == 0
-
-getFactors :: Int -> [Int]
-getFactors x = getFactorsInternal 3 (round . sqrt $ fromIntegral x) x
-
-getFactorsInternal :: Int -> Int -> Int -> [Int]
-getFactorsInternal x max original
-    | x > max = []
-    | original `mod` x == 0 = original : getFactorsInternal (x + 2) max original
-    | otherwise = getFactorsInternal (x + 2) max original
+    | null (filter (\y -> x `mod` y == 0) [3,5..(round . sqrt $ fromIntegral x)]) = True
+    | otherwise = False
 
 main :: IO()
 main = do
