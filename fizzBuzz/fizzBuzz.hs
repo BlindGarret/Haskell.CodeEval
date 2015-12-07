@@ -16,14 +16,10 @@ convertInputLine x = packageInputs ((map read . words) x :: [Int])
 packageInputs :: [Int] -> (Int, Int, Int)
 packageInputs [f,b,end] = (f, b, end)
 
-concatOutput :: [String] -> String
-concatOutput (x : xs) =
-    foldl (\x y -> x ++ " " ++ y) x xs
-
 handleFizzBuzz :: [String] -> [String]
 handleFizzBuzz [] = []
 handleFizzBuzz (x : xs) =
-    (concatOutput . fizzBuzz . convertInputLine $ x) : handleFizzBuzz xs
+    (unwords . fizzBuzz . convertInputLine $ x) : handleFizzBuzz xs
 
 main :: IO ()
 main = do
