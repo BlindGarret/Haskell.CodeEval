@@ -1,14 +1,8 @@
 import System.Environment
 import Data.List.Split
 
-stringToInt :: String -> Int
-stringToInt x = read x :: Int
-
-splitOnCommas :: String -> [String]
-splitOnCommas = splitOn ","
-
 format :: String -> [Int]
-format x = map stringToInt (splitOnCommas x)
+format x = map read (splitOn "," x)
 
 getMultiple :: [Int] -> Int
 getMultiple [target, originalx, currentx] 
@@ -23,4 +17,4 @@ main = do
     args <- getArgs
     let path = args !! 0
     file <- readFile path
-    putStrLn (unlines ( map (show . getMultiple . format) (lines file)))
+    putStrLn . unlines $ map (show . getMultiple . format) (lines file)
