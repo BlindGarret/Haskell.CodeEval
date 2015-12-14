@@ -3,13 +3,12 @@ import System.Environment
 
 isNumberSelfDescribing :: Int -> Int
 isNumberSelfDescribing x
-    | (testDigits (splitDigits x) 0) == True  = 1
+    | (testDigits (map digitToInt (show x)) 0) == True  = 1
     | otherwise                               = 0
     where testDigits x i
             | i == length x                                  = True  
             | (length $ filter (\y -> y == i) x) /= x !! i   = False
             | otherwise                                      = testDigits x (i + 1)
-          splitDigits x = map digitToInt (show x)
 
 stringToInt :: String -> Int
 stringToInt x = read x
